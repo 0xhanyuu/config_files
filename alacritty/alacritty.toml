@@ -1,41 +1,32 @@
-[colors.primary]
+[colors]
   # Default colors
-#	background = '0x1f1f21' # original
-#	background = '0x171414' # dark-red
-    background = '0x2b2c35' # nordic-grey-altered
-	foreground = '0xc0c5ce'
+  [colors.primary]
+    background= '0x3e383c'
+    foreground= '0xffffff'
 
   # Normal colors
-[colors.normal]
-	black = '0x2b303b'
-    red = '0xbf616a'
-    green = '0xa3be8c'
-    yellow = '0xebcb8b'
-    blue = '0x8fa1b3'
-    magenta = '0xb48ead'
-    cyan = '0x96b5b4'
-    white = '0xc0c5ce'
+  [colors.normal]
+    black=   '0x757575'
+    red=     '0xff5f5f'
+    green=   '0xde8a36'
+    yellow=  '0xd78787'
+    blue=    '0xaf5fd7'
+    magenta= '0xff87d7'
+    cyan=    '0xdea3e5'
+    white=   '0xb8b8b8'
 
   # Bright colors
-[colors.bright]
-    black = '0x65737e'
-    red = '0xbf616a'
-    green = '0xa3be8c'
-    yellow = '0xebcb8b'
-    blue = '0x8fa1b3'
-    magenta = '0xb48ead'
-    cyan = '0x96b5b4'
-    white = '0xeff1f5'
-
-
-
-[cursor.style]
-shape = "Block"
-blinking = "Never"
+  [colors.bright]
+    black=   '0xb8b8b8'
+    red=     '0xd78787'
+    green=   '0xff9f6f'
+    yellow=  '0xff5f5f'
+    blue=    '0xdea3e5'
+    magenta= '0xd7afaf'
+    cyan=    '0xaf5fd7'
+    white=   '0xeed3f8'
 
 [font]
-size = 15 
-
+size = 13
 [font.normal]
-family = "Terminus"
-style = "Regular"
+family = "BigBlueTermPlusNerdFontMono"
