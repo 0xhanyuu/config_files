@@ -1,0 +1,21 @@
+media-sound/spotify local-playback# required by dev-python/cairocffi-1.7.1::gentoo[-test]
+# required by media-gfx/cairosvg-2.7.1::gentoo
+# required by net-misc/dhcpcd-ui-0.7.9::gentoo
+# required by dhcpcd-ui (argument)
+>=x11-libs/gdk-pixbuf-2.42.10-r1 jpeg
+# required by gnome-base/gnome-keyring-42.1-r2::gentoo
+# required by virtual/secret-service-0::gentoo
+# required by app-crypt/libsecret-0.21.1::gentoo
+>=app-crypt/gcr-3.41.1-r2:0 gtk
+# required by media-gfx/gimp-2.10.38-r1::gentoo
+# required by gimp (argument)
+>=app-text/poppler-24.08.0 cairo
+# required by media-gfx/gimp-2.10.38-r1::gentoo
+# required by gimp (argument)
+>=media-libs/gegl-0.4.48 cairo
+# required by x11-terms/cool-retro-term-1.2.0::gentoo
+# required by cool-retro-term (argument)
+>=dev-qt/qtdeclarative-5.15.14:5 localstorage
+# required by x11-terms/cool-retro-term-1.2.0::gentoo
+# required by cool-retro-term (argument)
+>=dev-qt/qtquickcontrols2-5.15.14 widgets
