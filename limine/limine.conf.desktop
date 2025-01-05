@@ -1,0 +1,17 @@
+timeout: 10
+wallpaper: boot():/wallpaper.jpg
+interface_resolution: 1280x720
+interface_branding: hanyuuboot
+
+/Gentoo Linux
+        protocol: linux
+        kernel_path: boot():/vmlinuz-6.12.7-gentoo-dist
+        module_path: boot():/initramfs-6.12.7-gentoo-dist.img
+	module_path: boot():/amd-uc.img
+        cmdline: root=UUID=0ef96efa-2284-4607-878f-9e2f69aa6565 rw
+
+/Arch Linux
+	protocol: linux
+	kernel_path: boot():/vmlinuz-linux
+	kernel_cmdline: root=UUID=bb6ed1de-df78-492f-a774-af7231a6200b rw
+	module_path: boot():/initramfs-linux.img
