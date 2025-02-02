@@ -171,8 +171,8 @@ set $fb-color #806565
 set $ub-color #a0a0a0
 
 set $taskbar           #e48a9a 
-set $focused-taskbar   #f5bac1
-set $unfocused-taskbar #fae9e8
+set $focused-taskbar   #fae9e8
+set $unfocused-taskbar #f5bac1
 set $taskbar-border    #e48a9a
 
 # class                 border  bground text    indicator child_border
@@ -207,7 +207,7 @@ bindsym $mod+space exec \
 
 # AutoStart applications
 exec_always redshift -P -O 3500 &
-exec_always feh --bg-fill /home/hanyuu/Pic*/pxfu*
+exec_always feh --bg-fill /home/hanyuu/Pic*/remi*
 
 exec_always setxkbmap gb
 exec xrandr -s 2560x1440
