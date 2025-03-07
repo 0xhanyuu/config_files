@@ -1,0 +1,33 @@
+[colors]
+  # Default colors
+  [colors.primary]
+    background= '0x3a3641'
+    foreground= '0xffffff'
+
+  # Normal colors
+  [colors.normal]
+    black=   '0x3d3e3d'
+    red=     '0xa74f5b'
+    green=   '0x6f755a'
+    yellow=  '0xc7a79c'
+    blue=    '0x656975'
+    magenta= '0x7f5b73'
+    cyan=    '0x465457'
+    white=   '0xccccc6'
+
+  # Bright colors
+  [colors.bright]
+    black=   '0x5a5b5c'
+    red=     '0xc08987'
+    green=   '0x9ba376'
+    yellow=  '0xdabd9f'
+    blue=    '0x7f8ba2'
+    magenta= '0xa976a0'
+    cyan=    '0x899ca1'
+    white=   '0xf8f8f2'
+
+[font]
+#original=16
+size = 16
+[font.normal]
+family = "terminus"
