@@ -1,16 +1,15 @@
-# https://i3wm.org/docs/userguide.html for a complete reference
+# https://i3wm.org/docs/userguide.html
 set $mod Mod4
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font pango:terminus 20
+# Font for window titles. Will also be used by the bar unless specified otherwise.
+font pango:monospace 11
 
-# Start XDG autostart .desktop files using dex. See also
+# Start XDG autostart .desktop files using dex. See also:
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# Use pactl to adjust volume in PulseAudio.
+# Use pactl to adjust volume.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
@@ -60,8 +59,6 @@ bindsym $mod+v split v
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
-
 # toggle tiling / floating
 bindsym $mod+s floating toggle
 
@@ -73,16 +70,16 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1<"
-set $ws2 "2<"
-set $ws3 "3<"
-set $ws4 "4<"
-set $ws5 "5<"
-set $ws6 "6<"
-set $ws7 "7<"
-set $ws8 "8<"
-set $ws9 "9<"
-set $ws10 "10<"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -116,8 +113,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut.' -B 'Exit i3.' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
-mode "resize"
-{
+mode "resize" {
 	bindsym j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize shrink height 10 px or 10 ppt
@@ -141,6 +137,7 @@ mode "launcher" {
 		bindsym f exec firefox
 		bindsym d exec discord
 		bindsym v exec vesktop
+		bindsym s exec signal-desktop
 		
 		bindsym $mod+m mode "default"
 }
@@ -170,60 +167,54 @@ set $fg-color #ffffff
 set $fb-color #806565
 set $ub-color #a0a0a0
 
-set $taskbar           #e48a9a 
-set $focused-taskbar   #fae9e8
-set $unfocused-taskbar #f5bac1
-set $taskbar-border    #e48a9a
+set $bar_clr           #c2c2c2
+set $focused-bar_clr   #202020
+set $unfocused-bar_clr #c2c2c2
+set $bar_clr-border    #202020
+set $unfocused-bar_clr-border #c2c2c2
 
-# class                 border  bground text    indicator child_border
-client.focused          $taskbar  $taskbar  #ffffff $taskbar
-client.focused_inactive $ub-color $ub-color #cccccc $taskbar
-client.unfocused        $ub-color $ub-color #cccccc $taskbar
-client.urgent           $fg-color $fg-color #ffcccc $taskbar
+# class                 border    bground text indicator child_border
+client.focused          $bar_clr  $bar_clr     #ffffff   $bar_clr
+client.focused_inactive $ub-color $ub-color    #cccccc   $bar_clr
+client.unfocused        $ub-color $ub-color    #cccccc   $bar_clr
+client.urgent           $fg-color $fg-color    #ffcccc   $bar_clr
 client.background       #ffffff
 
-bar
-{
+bar {
 	status_command i3status
-	separator_symbol " > "
-	workspace_min_width 100
+	separator_symbol " | "
+	workspace_min_width 50
 	position top
 
-	colors
-	{
-                background $taskbar
-                statusline #ffffff
-                separator  #ffffff
+	colors {
+		# Entire bar colour.
+                background $bar_clr
+                statusline #202020
+                separator  #202020
 
-                focused_workspace  $taskbar-border $focused-taskbar   #ffffff
-                inactive_workspace $taskbar-border $unfocused-taskbar #222222
+                focused_workspace  $bar_clr-border           $focused-bar_clr   #c2c2c2
+                inactive_workspace $unfocused-bar_clr-border $unfocused-bar_clr #202020
         }
 }
 
 # start dmenu (a program launcher)
 bindsym $mod+space exec \
-"dmenu_run -b -nb '#e48a9a' -nf '#ffffff' -sb '#f5bac1' -sf '#ffffff' \
--fn 'terminus-26' -p 'dmenuwu'"
+"dmenu_run -b -nb '#202020' -nf '#ffffff' -sb '#c2c2c2' -sf '#ffffff' -fn 'monospace-12' -p 'dmenuwu'"
 
 # AutoStart applications
 exec_always redshift -P -O 3500 &
-exec_always feh --bg-fill /home/hanyuu/Pic*/remi*
+exec_always feh --bg-fill /home/hanyuu/Pictures/yuyuko-wallpaper.png --geometry 2560x1440
 
 exec_always setxkbmap gb
-exec xrandr -s 2560x1440
+exec xrandr -s 2560x1440 &
+exec xrdb -merge ~/.Xresources
+
 exec gnome-keyring-daemon -d &
-exec xset s off
-
 exec gentoo-pipewire-launcher &
-exec fcitx5
-
-#exec ibus-daemon -rxRd
-#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec fcitx5 &
 
 bindsym $mod+l exec i3lock --color=000000
 bindsym Print exec flameshot gui
 
-# Other Customization
-#default_border pixel 0
-gaps inner 7
-#gaps outer 0
+# Other Tiling Custimization
+for_window [class="^.*"] border pixel 2
