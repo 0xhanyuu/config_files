@@ -80,7 +80,6 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -92,7 +91,6 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
-
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
@@ -110,20 +108,23 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut.' -B 'Exit i3.' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut.' -B '  exit  ' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
+#
+# Resizing Containers:
+#
+
 mode "resize" {
-	bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+	bindsym j resize shrink width 5 px or 5 ppt
+        bindsym k resize grow height 5 px or 5 ppt
+        bindsym l resize shrink height 5 px or 5 ppt
+        bindsym semicolon resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -159,25 +160,17 @@ mode "nightlight_config" {
 }
 bindsym $mod+n mode"nightlight_config"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+#
+# All Colors:
+#
 
-set $bg_color #707070
-set $fg-color #ffffff
-set $fb-color #806565
-set $ub-color #a0a0a0
+set $main-color #c2c2c2
+set $seco-color #a0a0a0
 
-set $bar_clr           #c2c2c2
-set $focused-bar_clr   #202020
-set $unfocused-bar_clr #c2c2c2
-set $bar_clr-border    #202020
-set $unfocused-bar_clr-border #c2c2c2
-
-# class                 border    bground text indicator child_border
-client.focused          $bar_clr  $bar_clr     #ffffff   $bar_clr
-client.focused_inactive $ub-color $ub-color    #cccccc   $bar_clr
-client.unfocused        $ub-color $ub-color    #cccccc   $bar_clr
-client.urgent           $fg-color $fg-color    #ffcccc   $bar_clr
+client.focused          $main-color $main-color #ffffff $main-color
+client.focused_inactive $seco-color $seco-color #cccccc $main-color
+client.unfocused        $seco-color $seco-color #cccccc $main-color
+client.urgent           $seco-color $seco-color #ffcccc $main-color
 client.background       #ffffff
 
 bar {
@@ -188,21 +181,20 @@ bar {
 
 	colors {
 		# Entire bar colour.
-                background $bar_clr
-                statusline #202020
-                separator  #202020
+                statusline #ffffff
+                background #323232
+		separator  #ffffff
 
-                focused_workspace  $bar_clr-border           $focused-bar_clr   #c2c2c2
-                inactive_workspace $unfocused-bar_clr-border $unfocused-bar_clr #202020
+                focused_workspace  #c2c2c2     $main-color   $seco-color
+                inactive_workspace #323232     #323232       #5c5c5c
         }
 }
 
-# start dmenu (a program launcher)
-bindsym $mod+space exec \
-"dmenu_run -b -nb '#202020' -nf '#ffffff' -sb '#c2c2c2' -sf '#ffffff' -fn 'monospace-12' -p 'dmenuwu'"
+#
+#AutoStart Applications:
+#
 
-# AutoStart applications
-exec_always redshift -P -O 3500 &
+exec_always redshift -P -O 3350 &
 exec_always feh --bg-fill /home/hanyuu/Pictures/yuyuko-wallpaper.png --geometry 2560x1440
 
 exec_always setxkbmap gb
@@ -213,8 +205,18 @@ exec gnome-keyring-daemon -d &
 exec gentoo-pipewire-launcher &
 exec fcitx5 &
 
-bindsym $mod+l exec i3lock --color=000000
+#
+# Other Commands:
+#
+
 bindsym Print exec flameshot gui
 
+set $menu dmenu_run -b -fn "terminus-14" -p "dmenuwu" -sb "#c2c2c2"
+bindsym $mod+space exec $menu 
+
+bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+v exec vesktop
+bindsym $mod+Shift+s exec signal-desktop
+
 # Other Tiling Custimization
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 1
